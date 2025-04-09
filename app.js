@@ -90,6 +90,30 @@ const updateStats = () => {
  
 
 
+// const updateTasksList = () => {
+//     const taskList = document.getElementById("task-list");
+//     taskList.innerHTML = "";
+
+//     tasks.forEach((task, index) => {
+//         const listItem = document.createElement("li");
+
+//         listItem.innerHTML = `
+//             <div class="taskItem">
+//                 <div class="task ${task.completed ? "completed" : ""}">
+//                     <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""} onChange="toggleTaskComplete(${index})"/>
+//                     <p>${task.text}</p>
+//                 </div>
+//                 <div class="icons">
+//                     <img src="./images/edit.png" onClick="editTask(${index})"/>
+//                     <img src="./images/bin.png" onClick="deleteTask(${index})"/>
+//                 </div>
+//             </div>
+//         `;
+
+//         taskList.append(listItem);
+//     });
+// };
+
 const updateTasksList = () => {
     const taskList = document.getElementById("task-list");
     taskList.innerHTML = "";
@@ -97,22 +121,49 @@ const updateTasksList = () => {
     tasks.forEach((task, index) => {
         const listItem = document.createElement("li");
 
-        listItem.innerHTML = `
-            <div class="taskItem">
-                <div class="task ${task.completed ? "completed" : ""}">
-                    <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""} onChange="toggleTaskComplete(${index})"/>
-                    <p>${task.text}</p>
-                </div>
-                <div class="icons">
-                    <img src="./images/edit.png" onClick="editTask(${index})"/>
-                    <img src="./images/bin.png" onClick="deleteTask(${index})"/>
-                </div>
-            </div>
-        `;
+        const taskItem = document.createElement("div");
+        taskItem.className = "taskItem";
 
-        taskList.append(listItem);
+        const taskDiv = document.createElement("div");
+        taskDiv.className = `task ${task.completed ? "completed" : ""}`;
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.completed;
+        checkbox.className = "checkbox";
+        checkbox.addEventListener("change", () => toggleTaskComplete(index));
+
+        const taskText = document.createElement("p");
+        taskText.textContent = task.text;
+
+        taskDiv.appendChild(checkbox);
+        taskDiv.appendChild(taskText);
+
+        const iconsDiv = document.createElement("div");
+        iconsDiv.className = "icons";
+
+        const editImg = document.createElement("img");
+        editImg.src = "./images/edit.png";
+        editImg.alt = "Edit";
+        editImg.addEventListener("click", () => editTask(index));
+
+        const binImg = document.createElement("img");
+        binImg.src = "./images/bin.png";
+        binImg.alt = "Delete";
+        binImg.addEventListener("click", () => deleteTask(index));
+
+        iconsDiv.appendChild(editImg);
+        iconsDiv.appendChild(binImg);
+
+        taskItem.appendChild(taskDiv);
+        taskItem.appendChild(iconsDiv);
+        listItem.appendChild(taskItem);
+
+        taskList.appendChild(listItem);
     });
 };
+
+
 
 const blaskConfetti = () =>{
     const count = 200,
