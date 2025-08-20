@@ -51,6 +51,6 @@ Storage: LocalStorage
 
 🔗 Links
 
-Live Demo
+Live Demo - https://mytodolistrepo.netlify.app/
 
-GitHub Repo
+GitHub Repo - https://github.com/Bose84/Todo-App/tree/main
