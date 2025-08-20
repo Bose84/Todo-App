@@ -45,9 +45,7 @@ Frontend: HTML5, CSS3, JavaScript
 
 Storage: LocalStorage
 
-📷 Demo
 
-(Screenshot or GIF here)
 
 🔗 Links
 
